@@ -1278,7 +1278,7 @@ function openBulkAssignment() {
   const email = assignmentRetry?.email || '';
   if (email && !choices.some(([value]) => value === email)) choices.push([email, email]);
   openModal('Массовое назначение', 'bulk-assignment', null,
-    '<p class="note">Вся территория, включая Махачкалу и карточки без уточнённого города. Текущие ответственные будут заменены на выбранного менеджера.</p>'+
+    '<p class="note">Назначение включает всю территорию и карточки с неуточнённой географией. Текущие ответственные будут заменены на выбранного менеджера.</p>'+
     selectField('Менеджер','assignmentManager',choices,email,true,true)+
     '<p id="assignmentPreview" class="note" role="status"></p>');
   if (modal?.kind !== 'bulk-assignment') return;
@@ -1296,7 +1296,7 @@ function openBulkAssignment() {
 }
 
 function showBulkPreview(preview) {
-  const size = `Карточек в базе ${count(preview.total)}, из них в Екатеринбург ${count(preview.city)}.`;
+  const size = `Карточек в базе ${count(preview.total)}, городских карточек ${count(preview.city)}.`;
   const changes = preview.email ? (preview.changed ?
     ` Сменят ответственного ${count(preview.changed)} карточек. Из них с действующим назначением ${count(preview.reassigned)}.` :
     ' Все карточки уже назначены выбранному менеджеру.') : '';
